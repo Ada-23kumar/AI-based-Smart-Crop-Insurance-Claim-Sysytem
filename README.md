@@ -1,0 +1,1 @@
+# AI-based-Smart-Crop-Insurance-Claim-Sysytem
