@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Crop Insurance Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #004d00, #002800);
+            color: #333;
+            overflow-x: hidden;
+            transition: margin-left 0.3s ease;
+        }
+
+        .top-bar {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 8px 20px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: linear-gradient(to right, #003300, #005500);
+            color: white;
+            transition: margin-left 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            width: 70px;
+            height: 70px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        header h1 {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            flex: 2;
+            
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons button {
+            background: #ff7eb3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .auth-buttons button:hover {
+            background: #ff4d88;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to right, #005500, #003300);
+            padding: 10px 0;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #43cea2, #185a9d);
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.1s ease;
+
+        }
+
+        nav a:hover {
+            background: #ffcccb;
+            color: #333;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: linear-gradient(90deg, #43cea2, #185a9d);
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            background: linear-gradient(90deg, #185a9d, #43cea2);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: #ffcccb;
+            color: #333;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .notification-area {
+            background: linear-gradient(90deg, #43cea2, #185a9d);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: bold;
+            transition: margin-left 0.3s ease;
+        }
+
+        .notification-text {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .dashboard-toggle {
+            margin: 10px auto;
+            background: #3a1c71;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .dashboard-toggle:hover {
+            background: #6a1b9a;
+        }
+
+        .dashboard {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(to right, #005500, #003300);
+            color: white;
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .dashboard.active {
+            left: 0;
+        }
+
+        .dashboard .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .dashboard .profile img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #ffaf7b;
+        }
+
+        .dashboard .profile h4 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .dashboard ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dashboard li {
+            margin-bottom: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dashboard li:hover {
+            color: #ffaf7b;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            background: linear-gradient(to bottom, #004d00, #002800);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #chatCard {
+            display: none;
+            /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            width: 220px;
+            height: 230px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: #006400;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .card button {
+            background: linear-gradient(90deg, #43cea2, #185a9d);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+
+        }
+
+        .card button:hover {
+            background: linear-gradient(90deg, #185a9d, #43cea2);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 10px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 8px 20px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+
+        body.dashboard-open .main-content,
+        body.dashboard-open header,
+        body.dashboard-open .notification-area {
+            margin-left: 250px;
+        }
+
+
+        #picture {
+            display: none;
+            /* Hide the picture initially */
+            margin-top: 20px;
+        }
+
+        .Part-section {
+            width: auto;
+            background-color: lightblue;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .Futter-sec {
+            height: 50px;
+            color: #fff;
+            font-family: "roboto";
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            background-color: #0d469f;
+        }
+
+        .Futter-sec ul {
+            font-size: 15px;
+            gap: 30px;
+            display: flex;
+            justify-content: space-evenly;
+            color: black;
+        }
+        .additional{
+            position: relative;
+            top: 120px;
+        }
+       
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="left">PMFBY WhatsApp Bot - 7065514447 </div>
+        <div class="right">Krishak Rakshak - 1447</div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="WhatsApp Image 2025-01-03 at 10.17.03_ea21bf0f.jpg" alt="Logo">
+        </div>
+        <h1 id="Head">Smart Crop Insurance Portal</h1>
+        <div class="auth-buttons">
+            <button id="loginBtn" onclick="window.location.href='login.html'">Login</button>
+            <button id="registerBtn" onclick="window.location.href='register.html'">Register</button>
+            <button id="logoutBtn" onclick="logout()" style="display: none;">Logout</button>
+            <span id="userInfo" style="color: white; margin-left: 10px;"></span>
+        </div>
+    </header>
+
+    <nav>
+        <a href="new.html">Home</a>
+        <a href="documents.html">Documents</a>
+        <a href="#">Enrolled Partner</a>
+        <a href="#">Related Link</a>
+        <a href="#">Report</a>
+        <a href="#">Gallery</a>
+        <a href="#">About Us</a>
+
+        <!-- Dropdown menu -->
+        <div class="dropdown">
+            <button class="dropbtn">More</button>
+            <div class="dropdown-content">
+                <a href="#">FAQ</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="notification-area">
+        <div class="notification-text">
+            Hi this is Akash Kumar Singh and here in this portal  you can chek the insurance policies.
+              
+        </div>
+    </div>
+
+    <div class="dashboard-toggle" id="dashboardToggle">Dashboard</div>
+
+    <div class="dashboard" id="dashboard">
+        <div class="profile">
+            <img src="profile.jpg" alt="User Profile Picture">
+            <h4 id="username">User Name</h4>
+        </div>
+        <ul>
+            <li>Profile</li>
+            <li>Beneficiary Details</li>
+            <li onclick="showApplicationStatus()">Application Status</li>
+            <li>Payment History</li>
+            <li>Notification</li>
+            <li>Support & Help</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="card">
+            <h3>Insurance Plans</h3>
+            <p>Explore affordable and comprehensive crop insurance plans.</p>
+            <button onclick="window.location.href='insurance_policy_form.html'">Apply Now</button>
+        </div>
+        <div class="card">
+            <h3>My Applications</h3>
+            <p>View your submitted insurance applications.</p>
+            <button onclick="showApplications()">View Applications</button>
+        </div>
+        <div class="card">
+            <h3>Claim Process</h3>
+            <p>Simple and transparent claims to safeguard your crops.</p>
+            <a href="claim_under.html" target="_blank"><button>Check Details</button></a>
+        </div>
+
+        <div class="card">
+            <h3>Weather Data</h3>
+            <p>Check the wind speed of your area at your finger tips.</p>
+            <button onclick="window.open('https://pmfby.gov.in/winds/', '_blank')">View Reports</button>
+        </div>
+        <div class="card">
+            <h3>Whatsapp Chat</h3>
+            <p>Get any information about your application status and crops.</p>
+            <button onclick="showChatCard()">Chat</button>
+            <!-- <img id="picture" src="wattsaapAkash.jpg" alt="Placeholder Image"> -->
+        </div>
+        <div id="chatCard">
+            <button class="close-btn" onclick="closeChatCard()">x</button>
+            <img id="chatImage" src="wattsaapAkash.jpg" alt="bar code">
+        </div>
+
+        <div class="card">
+            <h3>Support & Help</h3>
+            <p>24/7 assistance for all your insurance-related queries.</p>
+            <button>Contact Us</button>
+        </div>
+    </div>
+
+    <div class="additional">
+        <div class="Part-section">
+            <a href="https://www.india.gov.in/"><img src="https://services.india.gov.in/assets/images/india-gov.png" alt="India Government" /></a>
+            <a href="https://www.mygov.in/"><img src="https://services.india.gov.in/assets/images/mygov.png" alt="MyGov" /></a>
+            <a href="https://www.data.gov.in/"><img src="https://services.india.gov.in/assets/images/data-gov.png" alt="Data.gov.in" /></a>
+            <a href="https://www.nic.in/"><img src="https://services.india.gov.in/assets/images/logo-nic-blue.png" alt="NIC" /></a>
+            <a href="https://pgportal.gov.in/"><img src="https://services.india.gov.in/assets/images/cpgrams.png" alt="CPGRAMS" /></a>
+            <a href="https://www.g20.org/pt-br"><img src="https://services.india.gov.in/assets/images/g20_logo.png" alt="G20" /></a>
+        </div>
+        <div class="Futter-sec">
+            <ul>
+                <li>About Us</li>
+                <li>Help</li>
+                <li>Terms and Conditions</li>
+                <li>Site Map</li>
+                <li>Website Policy</li>
+                <li>Link to us</li>
+                <li>RSS Feeds</li>
+                <li>Feedback</li>
+                <li>Contact us</li>
+                <li>Visitor Summary</li>
+            </ul>
+        </div>
+    </div>
+    
+
+    <footer>
+        &copy; 2025 Agro-Innovator, Tamil Nadu, India
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Check authentication when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            updateAuthUI();
+        });
+
+        const dashboardToggle = document.getElementById('dashboardToggle');
+        const dashboard = document.getElementById('dashboard');
+        const body = document.body;
+
+        dashboardToggle.addEventListener('click', () => {
+            dashboard.classList.toggle('active');
+            body.classList.toggle('dashboard-open');
+        });
+
+        function showPicture() {
+            const picture = document.getElementById('picture');
+            picture.style.display = 'block';
+        }
+
+        function showChatCard() {
+            document.getElementById("chatCard").style.display = "block";
+        }
+
+        function closeChatCard() {
+            document.getElementById("chatCard").style.display = "none";
+        }
+
+        function showApplications() {
+            try {
+                const storedData = localStorage.getItem('insuranceApplications');
+                console.log("Stored applications:", storedData);
+                
+                if (storedData) {
+                    const applications = JSON.parse(storedData);
+                    let message = "Your Applications:\n\n";
+                    
+                    applications.forEach((app, index) => {
+                        message += `Application ${index + 1}:\n`;
+                        message += `Farmer Name: ${app.farmerName}\n`;
+                        message += `Crop Type: ${app.cropType}\n`;
+                        message += `Status: ${app.status}\n`;
+                        message += `Submission Date: ${new Date(app.submissionDate).toLocaleDateString()}\n\n`;
+                    });
+                    
+                    alert(message);
+                } else {
+                    alert("No applications found.");
+                }
+            } catch (error) {
+                console.error("Error displaying applications:", error);
+                alert("Error displaying applications. Please try again.");
+            }
+        }
+
+        function showApplicationStatus() {
+            try {
+                const storedData = localStorage.getItem('insuranceApplications');
+                
+                if (storedData) {
+                    const applications = JSON.parse(storedData);
+                    
+                    // Create a modal to display application statuses
+                    const modal = document.createElement('div');
+                    modal.className = 'status-modal';
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+                        max-width: 80%;
+                        max-height: 80vh;
+                        overflow-y: auto;
+                        z-index: 1000;
+                    `;
+                    
+                    // Add close button
+                    const closeBtn = document.createElement('button');
+                    closeBtn.textContent = 'X';
+                    closeBtn.style.cssText = `
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background: red;
+                        color: white;
+                        border: none;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        font-weight: bold;
+                    `;
+                    closeBtn.onclick = function() {
+                        document.body.removeChild(modal);
+                        document.body.removeChild(overlay);
+                    };
+                    modal.appendChild(closeBtn);
+                    
+                    // Add title
+                    const title = document.createElement('h2');
+                    title.textContent = 'Application Status';
+                    title.style.cssText = `
+                        color: #006400;
+                        margin-bottom: 20px;
+                        text-align: center;
+                    `;
+                    modal.appendChild(title);
+                    
+                    // Create table for applications
+                    const table = document.createElement('table');
+                    table.style.cssText = `
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    `;
+                    
+                    // Add table header
+                    const thead = document.createElement('thead');
+                    thead.innerHTML = `
+                        <tr>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: left;">Application ID</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: left;">Farmer Name</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: left;">Crop Type</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: left;">Submission Date</th>
+                            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: left;">Status</th>
+                        </tr>
+                    `;
+                    table.appendChild(thead);
+                    
+                    // Add table body
+                    const tbody = document.createElement('tbody');
+                    
+                    applications.forEach((app, index) => {
+                        const row = document.createElement('tr');
+                        row.style.cssText = index % 2 === 0 ? 'background-color: #f9f9f9;' : '';
+                        
+                        // Determine status color
+                        let statusColor = '#ffcc00'; // Default yellow for pending
+                        if (app.status === 'Approved') {
+                            statusColor = '#4CAF50'; // Green for approved
+                        } else if (app.status === 'Rejected') {
+                            statusColor = '#f44336'; // Red for rejected
+                        }
+                        
+                        row.innerHTML = `
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">${app.applicationId || `APP-${index + 1}`}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">${app.farmerName}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">${app.cropType}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(app.submissionDate).toLocaleDateString()}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd; color: ${statusColor}; font-weight: bold;">${app.status}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                    
+                    table.appendChild(tbody);
+                    modal.appendChild(table);
+                    
+                    // Add overlay
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0.5);
+                        z-index: 999;
+                    `;
+                    overlay.onclick = function() {
+                        document.body.removeChild(modal);
+                        document.body.removeChild(overlay);
+                    };
+                    
+                    document.body.appendChild(overlay);
+                    document.body.appendChild(modal);
+                } else {
+                    alert("No applications found. Please submit an application first.");
+                }
+            } catch (error) {
+                console.error("Error displaying application status:", error);
+                alert("Error displaying application status. Please try again.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

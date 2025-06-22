@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Process Steps</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: auto;
+            margin: 0;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .section {
+            width: 80%;
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-container, .verification-container {
+            width: 80%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        label {
+            flex: 1;
+            text-align: left;
+            margin-right: 10px;
+        }
+        input, select, textarea {
+            flex: 2;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        video {
+            width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            display: none;
+        }
+        .policy-section {
+            width: 80%;
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .policy-section h2 {
+            color: #006400;
+        }
+        .policy-section p {
+            color: #555;
+        }
+        .policy-section a {
+            display: inline-block;
+            background: linear-gradient(90deg, #43cea2, #185a9d);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+        .policy-section a:hover {
+            background: linear-gradient(90deg, #185a9d, #43cea2);
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function toggleClaimForm() {
+            var formSection = document.getElementById("claimFormSection");
+            formSection.classList.toggle("hidden");
+            formSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function toggleVerificationSection() {
+            var verificationSection = document.getElementById("verificationSection");
+            verificationSection.classList.toggle("hidden");
+            verificationSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function accessGPSCamera() {
+            const video = document.getElementById("cameraFeed");
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+                .then(stream => {
+                    video.srcObject = stream;
+                    video.style.display = "block";
+                    video.play();
+                })
+                .catch(err => {
+                    alert("Error accessing camera: " + err);
+                });
+        }
+    </script>
+</head>
+<body>
+    <!-- New Insurance Policy Section -->
+    <div class="policy-section">
+        <h2>New Insurance Policy</h2>
+        <p>Take out a new insurance policy to protect your crops.</p>
+        <a href="insurance_policy_form.html">Apply for New Policy</a>
+    </div>
+
+    <!-- Original Claim Form Section -->
+    <div class="section" onclick="toggleClaimForm()">
+        <a href="insurance_form.html"><h2>Step 1: File a Claim</h2></a>
+        <p>Fill the claim form here.</p>
+    </div>
+
+    <div class="section" onclick="toggleVerificationSection()">
+        <h2>Step 2: Verification</h2>
+        <p>Our team will review your claim details.</p>
+    </div>
+
+    <div id="verificationSection" class="verification-container hidden">
+        <h2>Verification Documents</h2>
+        <p>Please upload the required documents:</p>
+        <div class="form-group"><label>Land Registration Papers or Land Patta Number:</label><input type="file"></div>
+        <div class="form-group"><label>Land Ownership Documents:</label><input type="file"></div>
+        <div class="form-group"><label>Aadhar Card:</label><input type="file"></div>
+        <div class="form-group"><label>Personal Identification Proof (Ration card, PAN Card, Voter card):</label><input type="file"></div>
+        <div class="form-group"><label>Bank Account Details:</label><input type="file"></div>
+        <div class="form-group"><label>Sowing Declaration:</label><input type="file"></div>
+        <div class="form-group">
+            <label>Take Picture Using GPS Camera:</label>
+            <button type="button" onclick="accessGPSCamera()">Open Camera</button>
+            <video id="cameraFeed" autoplay></video>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Step 3: Compensation</h2>
+        <p>Approved claims will receive compensation.</p>
+    </div>
+</body>
+</html>

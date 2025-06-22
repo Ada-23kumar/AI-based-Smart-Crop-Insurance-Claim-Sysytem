@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Policy Form - Smart Crop Insurance Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #004d00, #002800);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #006400;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #006400;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: #43cea2;
+            outline: none;
+            box-shadow: 0 0 5px rgba(67, 206, 162, 0.5);
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .col-md-6 {
+            flex: 0 0 50%;
+            padding: 0 10px;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #43cea2, #185a9d);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #185a9d, #43cea2);
+            transform: scale(1.05);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-section h2 {
+            color: #006400;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .required::after {
+            content: " *";
+            color: red;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-btn a {
+            color: #006400;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn a:hover {
+            text-decoration: underline;
+        }
+
+        .is-invalid {
+            border-color: #dc3545;
+        }
+
+        .invalid-feedback {
+            display: block;
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .form-control.is-invalid:focus {
+            box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-file-signature"></i> Insurance Policy Application</h1>
+        
+        <form id="insurancePolicyForm">
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="farmerName" class="required">Full Name</label>
+                            <input type="text" id="farmerName" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="aadharNumber" class="required">Aadhar Number</label>
+                            <input type="text" id="aadharNumber" class="form-control" pattern="[0-9]{12}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="phoneNumber" class="required">Phone Number</label>
+                            <input type="tel" id="phoneNumber" class="form-control" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="required">Address</label>
+                    <textarea id="address" class="form-control" rows="3" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Farm Details</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="landArea" class="required">Land Area (in acres)</label>
+                            <input type="number" id="landArea" class="form-control" min="0.1" step="0.1" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="cropType" class="required">Crop Type</label>
+                            <select id="cropType" class="form-control" required>
+                                <option value="">Select Crop Type</option>
+                                <option value="Rice">Rice</option>
+                                <option value="Wheat">Wheat</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Pulses">Pulses</option>
+                                <option value="Oilseeds">Oilseeds</option>
+                                <option value="Horticulture">Horticulture</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="soilType" class="required">Soil Type</label>
+                            <select id="soilType" class="form-control" required>
+                                <option value="">Select Soil Type</option>
+                                <option value="Alluvial">Alluvial</option>
+                                <option value="Black">Black</option>
+                                <option value="Red">Red</option>
+                                <option value="Laterite">Laterite</option>
+                                <option value="Mountain">Mountain</option>
+                                <option value="Desert">Desert</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="irrigationSource" class="required">Irrigation Source</label>
+                            <select id="irrigationSource" class="form-control" required>
+                                <option value="">Select Irrigation Source</option>
+                                <option value="Well">Well</option>
+                                <option value="Canal">Canal</option>
+                                <option value="River">River</option>
+                                <option value="Rainfed">Rainfed</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Insurance Details</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="insuranceType" class="required">Insurance Type</label>
+                            <select id="insuranceType" class="form-control" required>
+                                <option value="">Select Insurance Type</option>
+                                <option value="Comprehensive">Comprehensive</option>
+                                <option value="Basic">Basic</option>
+                                <option value="Premium">Premium</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="coverageAmount" class="required">Coverage Amount (₹)</label>
+                            <input type="number" id="coverageAmount" class="form-control" min="10000" step="1000" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="policyDuration" class="required">Policy Duration</label>
+                            <select id="policyDuration" class="form-control" required>
+                                <option value="">Select Duration</option>
+                                <option value="6">6 Months</option>
+                                <option value="12">1 Year</option>
+                                <option value="24">2 Years</option>
+                                <option value="36">3 Years</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="startDate" class="required">Policy Start Date</label>
+                            <input type="date" id="startDate" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Document Upload</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="aadharDoc" class="required">Aadhar Card</label>
+                            <input type="file" id="aadharDoc" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="landDoc" class="required">Land Ownership Document</label>
+                            <input type="file" id="landDoc" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="bankDoc" class="required">Bank Statement</label>
+                            <input type="file" id="bankDoc" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="photoDoc">Recent Photo</label>
+                            <input type="file" id="photoDoc" class="form-control" accept=".jpg,.jpeg,.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-success" id="successAlert">
+                Your insurance policy application has been submitted successfully!
+            </div>
+            <div class="alert alert-danger" id="errorAlert">
+                Please fill in all required fields correctly.
+            </div>
+
+            <button type="submit" class="btn btn-block">Submit Application</button>
+            
+            <div class="back-btn">
+                <a href="new.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUser = getUserInfo();
+            if (!currentUser) {
+                alert("You must be logged in to submit an insurance application.");
+                window.location.href = "login.html";
+                return;
+            }
+            
+            const form = document.getElementById('insurancePolicyForm');
+            const successAlert = document.getElementById('successAlert');
+            const errorAlert = document.getElementById('errorAlert');
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Reset previous validation
+                const inputs = form.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    input.classList.remove('is-invalid');
+                });
+                
+                // Validate all required fields
+                let isValid = true;
+                inputs.forEach(input => {
+                    if (input.hasAttribute('required') && !input.value) {
+                        input.classList.add('is-invalid');
+                        isValid = false;
+                    }
+                });
+                
+                if (!isValid) {
+                    errorAlert.style.display = 'block';
+                    successAlert.style.display = 'none';
+                    return;
+                }
+                
+                // Create insurance policy data object
+                const policyData = {
+                    userId: currentUser.id,
+                    farmerName: document.getElementById('farmerName').value,
+                    aadharNumber: document.getElementById('aadharNumber').value,
+                    phoneNumber: document.getElementById('phoneNumber').value,
+                    email: document.getElementById('email').value,
+                    address: document.getElementById('address').value,
+                    landArea: document.getElementById('landArea').value,
+                    cropType: document.getElementById('cropType').value,
+                    soilType: document.getElementById('soilType').value,
+                    irrigationSource: document.getElementById('irrigationSource').value,
+                    insuranceType: document.getElementById('insuranceType').value,
+                    coverageAmount: document.getElementById('coverageAmount').value,
+                    policyDuration: document.getElementById('policyDuration').value,
+                    startDate: document.getElementById('startDate').value,
+                    submissionDate: new Date().toISOString(),
+                    status: 'Pending',
+                    applicationId: 'APP-' + Date.now()
+                };
+                
+                // Get existing applications from localStorage
+                let applications = [];
+                try {
+                    const storedApplications = localStorage.getItem('insuranceApplications');
+                    if (storedApplications) {
+                        applications = JSON.parse(storedApplications);
+                    }
+                } catch (error) {
+                    console.error('Error parsing stored applications:', error);
+                }
+                
+                // Add new application to the list
+                applications.push(policyData);
+                
+                // Save updated applications to localStorage
+                localStorage.setItem('insuranceApplications', JSON.stringify(applications));
+                
+                // Show success message
+                successAlert.style.display = 'block';
+                errorAlert.style.display = 'none';
+                
+                // Reset form
+                form.reset();
+                
+                // Redirect to home page after 2 seconds
+                setTimeout(function() {
+                    window.location.href = 'new.html';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html> 

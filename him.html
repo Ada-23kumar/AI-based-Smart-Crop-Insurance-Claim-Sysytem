@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Popup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #004d00, #002800);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 250px;
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .card button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .card button:hover {
+            background: #0056b3;
+        }
+
+        /* Chat Card Styles */
+        #chatCard {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background: darkred;
+        }
+
+        /* Image inside chat card */
+        #chatImage {
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Chat Button -->
+<div class="card">
+    <h3>Whatsapp Chat</h3>
+    <p>Click to open chat image.</p>
+    <button onclick="showChatCard()">Chat</button>
+</div>
+
+<!-- Hidden Chat Card -->
+<div id="chatCard">
+    <button class="close-btn" onclick="closeChatCard()">X</button>
+    <img id="chatImage" src="wattsaapAkash.jpg" alt="Chat Image">
+</div>
+
+<script>
+    function showChatCard() {
+        document.getElementById("chatCard").style.display = "block";
+    }
+
+    function closeChatCard() {
+        document.getElementById("chatCard").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

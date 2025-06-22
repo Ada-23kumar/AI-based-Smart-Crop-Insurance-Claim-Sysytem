@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    top: 0;
+    font-family: sans-serif;
+
+}
+
+.top {
+    height: 30vh;
+    width: 100vw;
+    /* background-image: url("RASHTRAPATI_BHAVAN_20170809125606.jpg");
+    background-size: cover; */
+    /* position: center; */
+    background-image: linear-gradient(15deg, #414146, #0f459d);
+    padding-top: 30px;
+
+
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+    color: white;
+    position: relative;
+
+
+}
+
+.logo {
+    height: 60px;
+    width: 50px;
+    /* border-radius: 50%; */
+    padding-left: 20px;
+}
+
+.logo2 {
+    height: 100px;
+    width: auto;
+    /* border-radius: 20px; */
+    position: relative;
+    right: 80px;
+}
+
+.sep2 {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.first {
+    height: 70px;
+    width: 100%;
+    background-color: #5b6e96;
+    opacity: 0.8;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+
+}
+
+/* button {
+    border-radius: 150px;
+    color: white;
+    position: relative;
+    top: 7.5px;
+} */
+
+.green {
+    background-color: #25aafe;
+    position: relative;
+    color: white;
+    top: 10px;
+    border-width: 0px;
+    border-radius: 20px;
+    height: 30px;
+    width: 180px;
+}
+
+.red {
+    background-color:#Fff;
+    color: black;
+    position: relative;
+    top: 10px;
+    border-width: 0px;
+    border-radius: 20px;
+    height: 30px;
+    width: 100px;
+}
+
+.two {
+    height: 70%;
+    width: 30%;
+    background-color: rgb(235, 238, 241);
+    opacity: 0.1;
+    opacity: 0.8;
+    position: relative;
+    border-radius: 150px;
+
+}
+
+.box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+}
+
+.second {
+    margin-top: 20px;
+    height: 15vh;
+    width: auto;
+    background-color: aliceblue;
+    border-radius: 50px;
+
+
+}
+
+.boxes {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    left: 40px;
+    top: 30px;
+    text-align: center;
+    /* align-items: center; */
+    /* align-content: center; */
+
+}
+
+.box1 {
+    position: relative;
+    top: 10px;
+    display: flex;
+    text-align: center;
+    gap: 20px;
+    height: 40px;
+    width: 55%;
+    background-color: rgb(166, 175, 172);
+    border-radius: 50px;
+    opacity: 0.9;
+
+}
+
+.box1 p {
+    position: relative;
+    left: 30px;
+    top: 10px;
+}
+
+.box2 p {
+    position: relative;
+    left: 30px;
+    top: 10px;
+}
+
+.citizen {
+    position: relative;
+    top: 25px;
+    left: 45px;
+    color: orange;
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+.box2 {
+    font-family: sans-serif;
+    opacity: 0.9;
+    position: relative;
+    top: 10px;
+    display: flex;
+    text-align: center;
+    gap: 20px;
+    height: 40px;
+    width: 37%;
+    background-color: rgb(166, 175, 172);
+    border-radius: 50px;
+}
+
+.sign {
+    background-color: #25aafe;
+    color: white;
+    position: relative;
+    right: 50px;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+.link {
+    background-color: #d83232;
+    color: white;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+.navy {
+    background-color: #0d469f;;
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: end;
+    align-items: center;
+    gap: 640px;
+    height: 50px;
+    width: auto;
+
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    list-style: none;
+    align-items: center;
+}
+
+.btn {
+    position: relative;
+    right: 60px;
+    gap: 120px;
+    color: white;
+
+}
+
+.btn button {
+    gap: 20px;
+    border-width: 0px;
+
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.card {
+    height: 400px;
+    width: 300px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-family: cursive;
+}
+
+.card hr {
+    color: black;
+}
+
+
+.card h1 {
+    padding-left: 10px;
+    color: #4d0857;
+    text-decoration: none;
+}
+
+.card button {
+    /* gap: 20px; */
+    height: 50px;
+    width: 130px;
+    text-align: center;
+    color: white;
+    margin-left: 10px;
+    background-color: blue;
+    border-radius: 20px;
+    border-width: 0px;
+
+}
+
+.card button:hover {
+    box-shadow: 2px 2px 2px rgb(129, 129, 212);
+    font-weight: bold;
+
+}
+
+.image10 {
+    height: 200px;
+    width: 280px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    position: center center;
+    padding: 10px;
+}
+.Cards-section{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+    background-color: #eae8e8;
+    border: 1px solid rgb(164, 164, 164);
+
+    width: 90%;
+}
+.Card-Head{
+    font-family: "roboto";
+    font-size: 20px;
+    color: rgb(12, 134, 255);
+    box-shadow: black;
+}
+.Cards-section p{
+    font-family: "roboto";
+    font-size: 15px;
+}
+.FeedbackSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Head-Feed{
+    font-family: "roboto";
+    font-size: 30px;
+    padding-left: 48px;
+    color: rgb(0, 149, 255);
+    padding-top: 20px;
+}
+.Part-section{
+    width: 97%;
+    background-color: lightblue;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.Futter-sec{
+    height: 50px;
+    color: #fff;
+    font-family: "roboto";
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    background-color: #0d469f;
+}
+.Futter-sec ul{
+    font-size: 15px;
+    gap: 30px;
+}
+.Section-bottom{
+    font-family: "roboto";
+    color: white;
+    background-color: #1e2151;
+    text-align: center;
+    padding: 20px;
+}
+.Section-bottom p{
+    font-size: 15px;
+    padding: 10px;
+}
+.Watersection{
+    text-align: center;
+    color: #Fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #53b3ee;
+    /* height: 300px; */
+    width: 100%;
+}
+.Waterlist{
+    text-align: center;
+    padding: 20px;
+    gap: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;   
+}
+.Section-cardbutton{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 20px;
+}
