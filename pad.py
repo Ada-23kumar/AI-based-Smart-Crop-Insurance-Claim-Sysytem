@@ -24,6 +24,10 @@ movie_tfidf_matrix = tfidf.fit_transform(movies['genres'])
 
 # Compute similarity between movies
 cosine_sim = cosine_similarity(movie_tfidf_matrix, movie_tfidf_matrix)
+# only coment
+
+
+
 
 # Function to get movie recommendations based on similarity
 def recommend_movies(movie_title, num_recommendations=5):
